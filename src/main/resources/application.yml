@@ -1,0 +1,158 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: smart-tech-backend
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/smart_tech_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+  
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: biruksolomonmoges@gmail.com
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:smarttechSecureJWTSecretKey2024ForProductionUseChangeThis256BitKey}
+  expiration: 86400000 # 24 hours
+
+# Chapa Configuration
+chapa:
+  secret-key: ${CHAPA_SECRET_KEY:CHASECK_TEST-0Td4aInPwTC3s4rSLoM3xjcPQ1YV0hmX}
+  webhook:
+    secret: ${CHAPA_WEBHOOK_SECRET:CHAPA_WEBHOOK_SECRET_2024_SKEGMARKET_b8f9c2e1a4d7f6h3j9k2m5n8p1q4r7s0t3u6v9w2x5y8z1a4b7c0d3e6f9g2h5i8j1k4l7m0n3o6p9q2r5s8t1u4v7w0x3y6z9}
+  base-url: https://api.chapa.co/v1
+
+# AWS Configuration
+aws:
+  region: ${AWS_REGION:us-east-1}
+  s3:
+    bucket: ${AWS_S3_BUCKET:smart-tech-files}
+    enabled: ${AWS_S3_ENABLED:false}
+    access-key: ${AWS_ACCESS_KEY_ID:}
+    secret-key: ${AWS_SECRET_ACCESS_KEY:}
+    endpoint: ${AWS_S3_ENDPOINT:}
+    path-style-access: ${AWS_S3_PATH_STYLE_ACCESS:false}
+
+# Business Configuration
+business:
+  name: "Sentayehu Abebe Computer Retail Trade and Maintenance"
+  vat-rate: 0.15
+  logo-url: "/images/logo.png"
+  email: biruksolomonmoges@gmail.com
+
+# AfroMessage SMS Configuration
+afromessage:
+  api:
+    base-url: ${AFROMESSAGE_BASE_URL:https://api.afromessage.com}
+    token: ${AFROMESSAGE_TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJpZGVudGlmaWVyIjoiMEdoZnV0cUdxaENSaWlVSkE2THhWbU55cmlGVFNzbnQiLCJleHAiOjE5MTMwMTE1NzQsImlhdCI6MTc1NTI0NTE3NCwianRpIjoiYzI5ZmM3ZmEtOGIwMC00YWRkLTk0OTktMTYyMDZkZjE5MDUxIn0.yl_nNfGIXhmHMVoE0ofh9VLbCFBWFOSHijgxffDZP88}
+    sender-name: ${AFROMESSAGE_SENDER:}
+    identifier-id: ${AFROMESSAGE_IDENTIFIER:e80ad9d8-adf3-463f-80f4-7c4b39f7f164}
+    callback-url: ${AFROMESSAGE_CALLBACK_URL:${NGROK_URL:http://localhost:8080}/api/v1/webhooks/sms/delivery}
+    enabled: ${AFROMESSAGE_ENABLED:true}
+    timeout: 30000
+
+# SMS Configuration
+app:
+  sms:
+    mock-mode: ${SMS_MOCK_MODE:false}
+    enabled: ${SMS_ENABLED:false}
+    retry-attempts: 3
+    retry-delay: 1000
+  otp:
+    template: "Your {appName} verification code is: {otp}. Valid for {minutes} minutes. Do not share this code."
+
+    afromessage:
+      code-length: 6
+      code-type: 0
+      ttl: 300
+
+# Ngrok Configuration (for webhook testing)
+ngrok:
+  url: ${NGROK_URL:http://localhost:8080}
+
+# File Upload Configuration
+file:
+  upload:
+    dir: ${FILE_UPLOAD_DIR:./uploads}
+    max-size: 10485760 # 10MB
+    local-base-url: ${LOCAL_FILE_BASE_URL:http://localhost:8080/api/v1/files/download}
+
+# Storage Configuration - Controls file storage behavior
+storage:
+  # Primary storage type: 'local' or 's3'
+  type: ${STORAGE_TYPE:local}
+
+  # Enable/disable specific storage providers
+  providers:
+    local:
+      enabled: ${STORAGE_LOCAL_ENABLED:true}
+    s3:
+      enabled: ${STORAGE_S3_ENABLED:false}
+
+  # Fallback configuration - if primary storage fails, use fallback
+  fallback:
+    enabled: ${STORAGE_FALLBACK_ENABLED:true}
+    type: ${STORAGE_FALLBACK_TYPE:local}
+
+  # Local storage specific configuration
+  local:
+    base-directory: ${STORAGE_LOCAL_BASE_DIR:./uploads}
+    create-directories: ${STORAGE_LOCAL_CREATE_DIRS:true}
+    url-pattern: ${STORAGE_LOCAL_URL_PATTERN:http://localhost:9090/api/v1/files/download}
+    allowed-extensions: ${STORAGE_LOCAL_ALLOWED_EXT:jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,txt,zip}
+    max-file-size: ${STORAGE_LOCAL_MAX_SIZE:10485760}
+
+  # S3 storage specific configuration
+  s3:
+    bucket-name: ${STORAGE_S3_BUCKET:smart-tech-files}
+    region: ${STORAGE_S3_REGION:us-east-1}
+    access-key: ${STORAGE_S3_ACCESS_KEY:}
+    secret-key: ${STORAGE_S3_SECRET_KEY:}
+    endpoint: ${STORAGE_S3_ENDPOINT:}
+    path-style-access: ${STORAGE_S3_PATH_STYLE:false}
+    public-read: ${STORAGE_S3_PUBLIC_READ:true}
+    server-side-encryption: ${STORAGE_S3_ENCRYPTION:AES256}
+    max-file-size: ${STORAGE_S3_MAX_SIZE:52428800}
+    url-expiration-hours: ${STORAGE_S3_URL_EXPIRATION:24}
+
+  # File organization
+  folders:
+    products: ${STORAGE_FOLDER_PRODUCTS:products}
+    invoices: ${STORAGE_FOLDER_INVOICES:invoices}
+    maintenance: ${STORAGE_FOLDER_MAINTENANCE:maintenance}
+    general: ${STORAGE_FOLDER_GENERAL:general}
+    temp: ${STORAGE_FOLDER_TEMP:temp}
+
+logging:
+  level:
+    com.smarttech: DEBUG
+    org.springframework.security: DEBUG
