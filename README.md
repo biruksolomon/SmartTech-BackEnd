@@ -71,7 +71,7 @@ SmartTech is an enterprise-grade retail management system that combines e-commer
 
 ## 🗂️ Project Structure
 
-\`\`\`
+
 src/main/java/com/smarttech/
 ├── entity/                 # JPA Entities
 │   ├── User.java          # Customer/Admin accounts
@@ -97,7 +97,6 @@ src/main/java/com/smarttech/
     ├── UserRole.java     # User roles
     ├── OrderStatus.java  # Order lifecycle
     └── CustomerTier.java # Loyalty tiers
-\`\`\`
 
 ## 🔧 Key Technical Features
 
