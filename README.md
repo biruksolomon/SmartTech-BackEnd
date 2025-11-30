@@ -73,30 +73,30 @@ SmartTech is an enterprise-grade retail management system that combines e-commer
 
 
 src/main/java/com/smarttech/
-├── entity/                 # JPA Entities
-│   ├── User.java          # Customer/Admin accounts
-│   ├── Product.java       # Product catalog
-│   ├── Order.java         # Order management
-│   ├── Payment.java       # Payment transactions
-│   └── MaintenanceRequest.java # Service requests
-├── controller/            # REST API Controllers
-│   ├── AuthController.java      # Authentication
-│   ├── ProductController.java   # Product management
-│   ├── OrderController.java     # Order processing
-│   └── MaintenanceController.java # Maintenance services
-├── service/               # Business Logic Layer
-│   ├── impl/             # Service implementations
-│   ├── AuthService.java  # Authentication service
-│   ├── PaymentService.java # Payment processing
-│   └── AnalyticsService.java # Business analytics
-├── config/               # Configuration Classes
-│   ├── SecurityConfig.java     # Security configuration
-│   ├── FileStorageConfig.java  # Storage configuration
-│   └── AwsConfig.java          # AWS integration
-└── enums/                # Business Enumerations
-    ├── UserRole.java     # User roles
-    ├── OrderStatus.java  # Order lifecycle
-    └── CustomerTier.java # Loyalty tiers
+├── entity/                 
+│   ├── User.java          
+│   ├── Product.java       
+│   ├── Order.java         
+│   ├── Payment.java       
+│   └── MaintenanceRequest.java 
+├── controller/            
+│   ├── AuthController.java      
+│   ├── ProductController.java   
+│   ├── OrderController.java     
+│   └── MaintenanceController.java 
+├── service/               
+│   ├── impl/             
+│   ├── AuthService.java  
+│   ├── PaymentService.java 
+│   └── AnalyticsService.java 
+├── config/               
+│   ├── SecurityConfig.java     
+│   ├── FileStorageConfig.java  
+│   └── AwsConfig.java          
+└── enums/                
+    ├── UserRole.java     
+    ├── OrderStatus.java  
+    └── CustomerTier.java 
 
 ## 🔧 Key Technical Features
 
