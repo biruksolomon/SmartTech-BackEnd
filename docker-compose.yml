@@ -8,7 +8,7 @@ services:
     environment:
       DB_USERNAME: root
       DB_PASSWORD: root
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/smart_tech_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+      DB_URL: jdbc:mysql://mysql:3306/smart_tech_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       JWT_SECRET: ${JWT_SECRET:-changeMeInProduction}
